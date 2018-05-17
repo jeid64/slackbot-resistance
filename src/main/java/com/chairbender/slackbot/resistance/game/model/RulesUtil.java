@@ -6,6 +6,13 @@ package com.chairbender.slackbot.resistance.game.model;
  * Created by chairbender on 11/19/2015.
  */
 public abstract class RulesUtil {
+    
+    private static HashMap<Integer, Integer[]> teamSizes = new HashMap<Integer, Integer[]>() {{
+        put(5, new Integer[]{2, 3, 2, 3, 3});
+        put(6, new Integer[]{2, 3, 4, 3, 4});
+        put(7, new Integer[]{2, 3, 3, 4, 4});
+        put(8, new Integer[]{3, 4, 4, 5, 5});
+    }};
 
     /**
      *
@@ -14,127 +21,10 @@ public abstract class RulesUtil {
      * @return the number of players needed for the mission team for the indicated round.
      */
     public static int getRequiredTeamSize(int numPlayers, int round) {
-        if (round == 1) {
-            switch (numPlayers) {
-                case 5:
-                    return 2;
-                case 6:
-                    return 2;
-                case 7:
-                    return 2;
-
-                case 8:
-                    return 3;
-
-                case 9:
-                    return 3;
-
-                case 10:
-                    return 3;
-
-                default:
-                    return -1;
-
-            }
-        } else if (round == 2) {
-            switch (numPlayers) {
-                case 5:
-                    return 3;
-
-                case 6:
-                    return 3;
-
-                case 7:
-                    return 3;
-
-                case 8:
-                    return 4;
-
-                case 9:
-                    return 4;
-
-                case 10:
-                    return 4;
-
-                default:
-                    return -1;
-
-            }
-        } else if (round == 3) {
-            switch (numPlayers) {
-                case 5:
-                    return 2;
-
-                case 6:
-                    return 4;
-
-                case 7:
-                    return 3;
-
-                case 8:
-                    return 4;
-
-                case 9:
-                    return 4;
-
-                case 10:
-                    return 4;
-
-                default:
-                    return -1;
-
-            }
-        }  else if (round == 4) {
-            switch (numPlayers) {
-                case 5:
-                    return 3;
-
-                case 6:
-                    return 3;
-
-                case 7:
-                    return 4;
-
-                case 8:
-                    return 5;
-
-                case 9:
-                    return 5;
-
-                case 10:
-                    return 5;
-
-                default:
-                    return -1;
-
-            }
-        } else if (round == 5) {
-            switch (numPlayers) {
-                case 5:
-                    return 3;
-
-                case 6:
-                    return 4;
-
-                case 7:
-                    return 4;
-
-                case 8:
-                    return 5;
-
-                case 9:
-                    return 5;
-
-                case 10:
-                    return 5;
-
-                default:
-                    return -1;
-
-            }
-        }
-
-        return -1;
+       if(numPlayers < 5 || numPlayers > 10 || round < 1 || round > 5)
+           return -1;
+        else
+            return teamSizes.get(numPlayers < 8 ? numPlayers : 8)[round];
     }
 
     /**
