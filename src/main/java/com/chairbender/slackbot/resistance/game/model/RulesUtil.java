@@ -24,7 +24,7 @@ public abstract class RulesUtil {
        if(numPlayers < 5 || numPlayers > 10 || round < 1 || round > 5)
            return -1;
         else
-            return teamSizes.get(numPlayers < 8 ? numPlayers : 8)[round];
+            return teamSizes.get(numPlayers < 8 ? numPlayers : 8)[round-1];
     }
 
     /**
