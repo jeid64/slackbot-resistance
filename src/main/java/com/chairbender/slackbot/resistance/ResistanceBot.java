@@ -59,7 +59,7 @@ public class ResistanceBot {
             botState.remind();
         }
         if (botState.getState().equals(BotState.State.REGISTRATION)) {
-            if (message.toLowerCase().contains("join")) {
+            if (message.equalsIgnoreCase("join")) {
                 if (botState.getPlayers().size() == 10) {
                     botState.sendPublicMessageToPlayer(resistanceMessage.getSender(), "Sorry, the player" +
                             " limit of 10 has already been reached.");
