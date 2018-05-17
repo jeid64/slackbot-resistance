@@ -59,7 +59,7 @@ public class ResistanceBot {
             botState.remind();
         }
         if (botState.getState().equals(BotState.State.REGISTRATION)) {
-            if (message.contains("join")) {
+            if (message.toLowerCase().contains("join")) {
                 if (botState.getPlayers().size() == 10) {
                     botState.sendPublicMessageToPlayer(resistanceMessage.getSender(), "Sorry, the player" +
                             " limit of 10 has already been reached.");
@@ -69,7 +69,7 @@ public class ResistanceBot {
                     botState.sendPublicMessage(resistanceMessage.getSender().getUserName() + " is playing. " +
                             botState.getPlayers().size() + " players in the game.");
                 }
-            } else if (message.contains("done")) {
+            } else if (message.toLowerCase().contains("done")) {
                 //check if there's enough players
                 if (botState.getPlayers().size() >= 5) {
                     //start the game, send out all the player roles
@@ -83,7 +83,7 @@ public class ResistanceBot {
         } else if (botState.getState().equals(BotState.State.PICK_TEAM)) {
             //only listen to the leader right now
             if (resistanceMessage.getSender().getUserName().equals(botState.getLeaderUserName())) {
-                if (resistanceMessage.getMessage().startsWith("pick")) {
+                if (resistanceMessage.getMessage().toLowerCase().startsWith("pick")) {
                     String chosenUserName = resistanceMessage.getMessage().replace("pick", "").trim();
                     Player chosenPlayer = botState.getPlayerFromNameOrAtMention(chosenUserName, resistanceMessage.getSender());
                     //confirm it is a player in the game
@@ -106,7 +106,7 @@ public class ResistanceBot {
 
                     reportTeamSelection();
 
-                } else if (resistanceMessage.getMessage().startsWith("drop")) {
+                } else if (resistanceMessage.getMessage().toLowerCase().startsWith("drop")) {
                     String chosenUsername = resistanceMessage.getMessage().replace("drop", "").trim();
                     Player chosenPlayer = botState.getPlayerFromNameOrAtMention(chosenUsername,resistanceMessage.getSender());
                     if (chosenUsername.isEmpty()) {
@@ -129,7 +129,7 @@ public class ResistanceBot {
                         }
                     }
                     reportTeamSelection();
-                } else if (resistanceMessage.getMessage().startsWith("done")) {
+                } else if (resistanceMessage.getMessage().toLowerCase().startsWith("done")) {
                     //check that the team is valid
                     if (botState.isTeamFull()) {
                         //advance to the next state with the team locked in
