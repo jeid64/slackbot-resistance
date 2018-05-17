@@ -86,10 +86,10 @@ public class BotState {
         if (state != State.REGISTRATION && state != State.WAITING_TO_START) {
             sendPublicMessage("Round " + pickTeamState.getSituation().getRoundNumber() +
                     " of 5\n" +
-                    pickTeamState.getSituation().getMissionSuccess() + " successes\n" +
+                    pickTeamState.getSituation().getMissionSuccess() + " successes | " +
                     pickTeamState.getSituation().getMissionFails() + " fails\n" +
-                    "The leader rotation is " + GameMessageUtil.listOrder(getPlayerCharacters()) + "\n" +
-                    pickTeamState.getSituation().getLeader().getUserName() + " is the leader.\n\n" +
+                    "The leader rotation is " + GameMessageUtil.listOrder(getPlayerCharacters()) + "\n*" +
+                    pickTeamState.getSituation().getLeader().getUserName() + "* is the leader.\n\n" +
                     lastMessage);
         }
     }
@@ -109,10 +109,10 @@ public class BotState {
         if (state != State.REGISTRATION && state != State.WAITING_TO_START) {
             sendPublicMessage("Round " + pickTeamState.getSituation().getRoundNumber() +
                     " of 5\n" +
-                    pickTeamState.getSituation().getMissionSuccess() + " successes\n" +
+                    pickTeamState.getSituation().getMissionSuccess() + " successes | " +
                     pickTeamState.getSituation().getMissionFails() + " fails\n" +
-                    "The leader rotation is " + GameMessageUtil.listOrder(getPlayerCharacters()) + "\n" +
-                    pickTeamState.getSituation().getLeader().getUserName() + " is the leader.");
+                    "The leader rotation is " + GameMessageUtil.listOrder(getPlayerCharacters()) + "\n*" +
+                    pickTeamState.getSituation().getLeader().getUserName() + "* is the leader.");
         }
     }
 
@@ -295,22 +295,22 @@ public class BotState {
             }
         }
         if (numFails == 1) {
-            sendPublicMessage("The mission was a failure! There was 1 fail.");
+            sendPublicMessage("*The mission was a failure! There was 1 fail.*");
         } else if (numFails > 1) {
-            sendPublicMessage("The mission was a failure! There were " + numFails + " fails.");
+            sendPublicMessage("*The mission was a failure! There were " + numFails + " fails.*");
         } else {
-            sendPublicMessage("The mission was a success!");
+            sendPublicMessage("*The mission was a success!*");
         }
 
         CompleteMissionState completeMissionState = doMissionState.completeMission(numFails == 0);
         if (completeMissionState.isGameOver()) {
             //report the winner
             if (completeMissionState.didSpiesWin()) {
-                sendPublicMessage("3 missions have failed! Spies win!");
+                sendPublicMessage("*3 missions have failed! Spies win!*");
                 announceSpies();
                 sendPublicMessage("Thank you for playing!");
             } else {
-                sendPublicMessage("3 missions have succeeded! The Resistance wins!");
+                sendPublicMessage("*3 missions have succeeded! The Resistance wins!*");
                 announceSpies();
                 sendPublicMessage("Thank you for playing!");
             }
