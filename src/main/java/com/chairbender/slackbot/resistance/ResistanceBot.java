@@ -79,7 +79,7 @@ public class ResistanceBot {
                             botState.getPlayers().size() + " people are playing.");
                 }
             } else if (message.equalsIgnoreCase("drop")) {
-                if(botState.isPlayer(resistanceMessage.getSender()) {
+                if(botState.isPlayer(resistanceMessage.getSender())) {
                     botState.removePlayer(resistanceMessage.getSender());
                     botState.sendPublicMessage(resistanceMessage.getSender().getUserName() + " has been removed. " +
                             botState.getPlayers().size() + " players in the game.");
