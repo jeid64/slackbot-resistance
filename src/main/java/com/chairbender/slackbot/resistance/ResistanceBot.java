@@ -313,7 +313,7 @@ public class ResistanceBot {
             if (gameCharacter.isResistance()) {
                 botState.sendPrivateMessageToPlayer(gameCharacter.getPlayer(), "You are a member of the resistance. If " +
                         " three missions succeed, you win! You're" +
-                        " on the side of good. Hooray for you! Watch out though, as there are " + spies.size() + " out there!");
+                        " on the side of good. Hooray for you! Watch out though, as there are " + spies.size() + " spies out there!");
             } else {
                 botState.sendPrivateMessageToPlayer(gameCharacter.getPlayer(), "You are a spy along with " +
                         GameMessageUtil.listOtherPeople(spies, gameCharacter.getUserName()) + ".\n" +
