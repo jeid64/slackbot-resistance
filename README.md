@@ -50,3 +50,4 @@ let you know what to do as you play.
 ## Contributing
 
 Please open a new issue to provide feedback. I'd really appreciate feedback!
+Build with "gradle shadowJar"
