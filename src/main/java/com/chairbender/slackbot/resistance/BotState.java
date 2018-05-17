@@ -510,6 +510,19 @@ public class BotState {
             return true;
         }
     }
+    
+    /**
+     *
+     * @param player slack user to remove in the game
+     * @return true if the user is removed, false otherwise
+     */
+    public synchronized boolean removePlayer(Player player) {
+        if (players.contains(player)) {
+            players.remove(player);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Switches to a state in which it will listen for player registration
