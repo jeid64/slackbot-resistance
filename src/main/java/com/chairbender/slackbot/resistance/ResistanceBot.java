@@ -293,16 +293,18 @@ public class ResistanceBot {
      */
     private void startGame() {
         botState.startGame();
-
-        botState.sendPrompt("The game has begun. The players are " + GameMessageUtil.listPeople(botState.getPlayers()));
-
         Set<PlayerCharacter> spies = botState.getSpies();
+        
+        botState.sendPrompt("The game has begun. The players are " + GameMessageUtil.listPeople(botState.getPlayers())
+                           + ", and there are " + spies.size() + " spies among them!);
+
+        
         for (PlayerCharacter gameCharacter : botState.getPlayerCharacters()) {
             //tell the roles
             if (gameCharacter.isResistance()) {
                 botState.sendPrivateMessageToPlayer(gameCharacter.getPlayer(), "You are a member of the resistance. If " +
                         " three missions succeed, you win! You're" +
-                        " on the side of good. Hooray for you!");
+                        " on the side of good. Hooray for you! Watch out though, as there are " + spies.size() + " out there!");
             } else {
                 botState.sendPrivateMessageToPlayer(gameCharacter.getPlayer(), "You are a spy along with " +
                         GameMessageUtil.listOtherPeople(spies, gameCharacter.getUserName()) + ".\n" +
