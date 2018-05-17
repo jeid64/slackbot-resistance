@@ -84,24 +84,26 @@ public class ResistanceBot {
             //only listen to the leader right now
             if (resistanceMessage.getSender().getUserName().equals(botState.getLeaderUserName())) {
                 if (resistanceMessage.getMessage().toLowerCase().startsWith("pick")) {
-                    String chosenUserName = resistanceMessage.getMessage().replace("pick", "").trim();
-                    Player chosenPlayer = botState.getPlayerFromNameOrAtMention(chosenUserName, resistanceMessage.getSender());
-                    //confirm it is a player in the game
-                    if (chosenPlayer == null) {
-                        botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
-                                "I don't recognize the player called " + chosenUserName + ".");
-                    } else if (botState.isPlayerOnTeam(chosenPlayer)) {
-                        //confirm the player isn't already chosen
-                        botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
-                                "That player, " + chosenPlayer.getUserName() + ", is already on the team.");
-                    } else if (botState.isTeamFull()) {
-                        //confirm there aren't too many team members
-                        botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
-                                "The team is already full. Please 'drop' somebody first.");
-                    } else {
-                        //add the player and report the current team
-                        botState.addTeamMember(chosenPlayer);
-                        botState.sendPublicMessage("Added " + chosenPlayer.getUserName() + " to the team.\n");
+                    String[] chosenUserNames = resistanceMessage.getMessage().replace("pick", "").trim().split(" ");
+                    for(String chosenUserName : chosenUserNames) {
+                        Player chosenPlayer = botState.getPlayerFromNameOrAtMention(chosenUserName, resistanceMessage.getSender());
+                        //confirm it is a player in the game
+                        if (chosenPlayer == null) {
+                            botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
+                                    "I don't recognize the player called " + chosenUserName + ".");
+                        } else if (botState.isPlayerOnTeam(chosenPlayer)) {
+                            //confirm the player isn't already chosen
+                            botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
+                                    "That player, " + chosenPlayer.getUserName() + ", is already on the team.");
+                        } else if (botState.isTeamFull()) {
+                            //confirm there aren't too many team members
+                            botState.sendPublicMessageToPlayer(resistanceMessage.getSender(),
+                                    "The team is already full. Please 'drop' somebody first.");
+                        } else {
+                            //add the player and report the current team
+                            botState.addTeamMember(chosenPlayer);
+                            botState.sendPublicMessage("Added " + chosenPlayer.getUserName() + " to the team.\n");
+                        }
                     }
 
                     reportTeamSelection();
