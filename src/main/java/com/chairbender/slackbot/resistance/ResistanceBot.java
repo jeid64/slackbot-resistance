@@ -78,7 +78,14 @@ public class ResistanceBot {
                     botState.sendPublicMessage("Sorry, you need at least 5 players. Currently only " +
                             botState.getPlayers().size() + " people are playing.");
                 }
-
+            } else if (message.equalsIgnoreCase("drop")) {
+                if(botState.isPlayer(resistanceMessage.getSender()) {
+                    botState.removePlayer(resistanceMessage.getSender());
+                    botState.sendPublicMessage(resistanceMessage.getSender().getUserName() + " has been removed. " +
+                            botState.getPlayers().size() + " players in the game.");
+                } else {
+                    botState.sendPublicMessage("You aren't currently in the game. BUT YOU SHOULD BE!");
+                }
             }
         } else if (botState.getState().equals(BotState.State.PICK_TEAM)) {
             //only listen to the leader right now
