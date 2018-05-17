@@ -296,7 +296,7 @@ public class ResistanceBot {
         Set<PlayerCharacter> spies = botState.getSpies();
         
         botState.sendPrompt("The game has begun. The players are " + GameMessageUtil.listPeople(botState.getPlayers())
-                           + ", and there are " + spies.size() + " spies among them!);
+                           + ", and there are " + spies.size() + " spies among them!");
 
         
         for (PlayerCharacter gameCharacter : botState.getPlayerCharacters()) {
